@@ -11,7 +11,14 @@
 
 > **🧭 Where do I type?** 💬 = **Bob chat** (agentic sidebar). 🖥️ = **your own terminal** (**Terminal → New Terminal**, repository root). 🌐 = **browser**. Never paste shell commands into the Bob chat and never paste chat prompts into the terminal. See [Where Do I Type This?](README.md#where-do-i-type-this-chat-vs-terminal-vs-editor).
 
-> **💡 Name your Bob tasks.** When starting a new task in Bob, give it a short descriptive title (e.g. `"Lab 2 - Git workflow"`). The title is used when exporting session history to `task-history/` and is required for the AI Regulatory Compliance skill to produce accurate provenance records. Unnamed tasks export as `NN_unnamed_task/`.
+> **💡 Name your custom Bob task-history-folder.** When starting a new task in Bob, give it a short descriptive title (e.g. `"Lab 2 - Git workflow"`). The title is used when exporting session history to `task-history/` and is required for the AI Regulatory Compliance skill to produce accurate provenance records. Unnamed tasks export as `NN_unnamed_task/`.
+
+> Only if a second step appears in the sidebar will the task-history folder be renamed; otherwise, it will remain unnamed.
+> When this happens, you can simply rename the folder as needed.
+> See the GIF below as an example of how it works with two steps in the sidebar:
+
+
+![](/images/03-bob-task-history.gif)
 
 ---
 
@@ -131,7 +138,8 @@ Do this **before** you create the feature branch. Uncommitted Lab 1 files would 
 #### 🛠️ Attendee task: keep `.bob/mcp.json` out of Git (do this yourself, it is not part of the default configuration)
 Your MCP configuration can hold tokens and local paths. In a previous run, Bob committed and pushed `.bob/mcp.json` when asked "Commit it and push it". The template deliberately leaves `# .bob/mcp.json` commented out in [`.gitignore`](../.gitignore), so you decide for your own repository.
 
-1. 📝 **Editor:** open [`.gitignore`](../.gitignore) and remove the `#` in front of `.bob/mcp.json`, so the line reads `.bob/mcp.json`. *Alternative without touching the repository: add the line `.bob/mcp.json` to `.git/info/exclude`. That file is local and never committed.*
+1. 📝 **Editor:** open [`.gitignore`](../.gitignore) and remove the `#` in front of `.bob/mcp.json`, so the line reads `.bob/mcp.json`. *Alternative without touching the repository: add the line `.bob/mcp.json` to `.git/info/exclude` (You don't see in the Bob environment, but in the .git folder on your computer). That file is local and never committed.*
+![](/images/04-bob-git-exclude.png)
 2. 🖥️ **Terminal:** verify:
    ```bash
    git check-ignore -v .bob/mcp.json

@@ -11,7 +11,14 @@
 
 > **🧭 Where do I type?** 💬 = **Bob chat** (agentic sidebar). 🖥️ = **your own terminal** (**Terminal → New Terminal**). Never paste shell commands (`npm`, `node`, `curl`) into the Bob chat and never paste chat prompts into the terminal. See [Where Do I Type This?](README.md#where-do-i-type-this-chat-vs-terminal-vs-editor).
 
-> **💡 Name your Bob tasks.** When starting a new task in Bob, give it a short descriptive title (e.g. `"Lab 3 - Microservice"`). The title is used when exporting session history to `task-history/` and is required for the AI Regulatory Compliance skill to produce accurate provenance records. Unnamed tasks export as `NN_unnamed_task/`.
+> **💡 Name your custom Bob task-history-folder.** When starting a new task in Bob, give it a short descriptive title (e.g. `"Lab 2 - Git workflow"`). The title is used when exporting session history to `task-history/` and is required for the AI Regulatory Compliance skill to produce accurate provenance records. Unnamed tasks export as `NN_unnamed_task/`.
+
+> Only if a second step appears in the sidebar will the task-history folder be renamed; otherwise, it will remain unnamed.
+> When this happens, you can simply rename the folder as needed.
+> See the GIF below as an example of how it works with two steps in the sidebar:
+
+![](/images/03-bob-task-history.gif)
+
 >
 > **This lab uses two terminals.** **Terminal 1** runs the server (`node index.js`) and stays busy. **Terminal 2** runs `curl` and `npm test`. Open a second one with the **+** icon in the terminal panel.
 >

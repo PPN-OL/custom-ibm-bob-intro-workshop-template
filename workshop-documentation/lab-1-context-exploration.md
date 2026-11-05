@@ -14,7 +14,14 @@
 
 > **🧭 Where do I type?** 💬 = type into the **Bob chat** (agentic sidebar). 🖥️ = type into a **terminal you open** (**Terminal → New Terminal**). 📝 = edit a **file in the editor**. Never paste shell commands into the chat. See [Where Do I Type This?](README.md#where-do-i-type-this-chat-vs-terminal-vs-editor).
 
-> **💡 Name your Bob tasks.** When starting a new task in Bob, give it a short descriptive title (e.g. `"Lab 1 - Context exploration"`). The title is used when exporting session history to `task-history/`. Unnamed tasks export as `NN_unnamed_task/`.
+> **💡 Name your custom Bob task-history-folder.** When starting a new task in Bob, give it a short descriptive title (e.g. `"Lab 2 - Git workflow"`). The title is used when exporting session history to `task-history/` and is required for the AI Regulatory Compliance skill to produce accurate provenance records. Unnamed tasks export as `NN_unnamed_task/`.
+
+> Only if a second step appears in the sidebar will the task-history folder be renamed; otherwise, it will remain unnamed.
+> When this happens, you can simply rename the folder as needed.
+> See the GIF below as an example of how it works with two steps in the sidebar:
+
+
+![](/images/03-bob-task-history.gif)
 
 ---
 
@@ -59,7 +66,13 @@ IBM Bob reads workspace instructions such as [`AGENTS.md`](../AGENTS.md) automat
 ### Step 1.1b: Permissions in the Agentic Chat Sidebar
 Before Bob changes files or runs commands, you decide what it may do on its own. Bob asks for your approval by default. The controls sit in the **Auto-Approve toolbar** directly above the chat input in the agentic chat sidebar.
 
-1. 💬 **In the Bob sidebar** (no typing needed): hover over the **Auto-Approve toolbar** above the chat input and look at the available actions and their risk levels:
+1. 💬 **In the Bob sidebar** (no typing needed): 
+
+Open the permissions menu:
+![](/images/01-bob-permissions.png)
+
+Hover over the **Auto-Approve toolbar** above the chat input and look at the available actions and their risk levels:
+![](/images/02-bob-permissions.png)
 
    | Action | What Bob may do without asking | Risk |
    | :--- | :--- | :--- |
