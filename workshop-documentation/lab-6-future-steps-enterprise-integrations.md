@@ -146,16 +146,16 @@ flowchart LR
 
 #### Prerequisites
 
-1. **Task history exists.** 🖥️ **Terminal:** check that `task-history/` contains numbered folders from your earlier labs (named tasks give readable folder names, see the "Name your Bob tasks" notes in Labs 1–4):
+1. **Task history exists.** 🖥️ **Terminal:** check that `task-history/` contains numbered folders from your earlier labs (named tasks give readable folder names, see the "Name your Bob task" notes in Labs 1–4):
    ```bash
    ls task-history/
    ```
-   *Expected: folders such as `01_...`, `02_...`, each with a `bob-task-<id>-<date>.json` file. If the folder is empty, the hook did not run (see [Workspace Trust](README.md#prerequisites)) or you can export manually with `node .bob/hooks/export-task-history.mjs`.*
+   *Expected: folders such as `01_...`, `02_...`, each with a `bob-task-<id>-<date>.json` file. If the folder is empty, the hook did not run (see [Workspace Trust](README.md#prerequisites--workspace-setup)) or you can export manually with `node .bob/hooks/export-task-history.mjs`.*
 2. **Let Bob read the exports (temporarily).** [`.bobignore`](../.bobignore) lists `task-history/`, so Bob cannot read the exports by default. 📝 **Editor:** open [`.bobignore`](../.bobignore) and put a `#` in front of the `task-history/` line:
    ```text
    # task-history/
    ```
-   > **Why this is a conscious step:** The exports contain your complete prompts, tool output and local paths. Only do this in a workshop workspace, and restore the line when you are done (see step 6.5.3). Never commit `task-history/` (it is already covered by [`.gitignore`](../.gitignore)).
+   > **Why this is a conscious step:** The exports contain your complete prompts, tool output and local paths. Only do this in a workshop workspace, and restore the line when you are done (see [Restore the protection](#restore-the-protection) below). Never commit `task-history/` (it is already covered by [`.gitignore`](../.gitignore)).
 
 #### Run the skill
 

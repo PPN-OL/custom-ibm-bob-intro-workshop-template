@@ -14,14 +14,11 @@
 
 > **🧭 Where do I type?** 💬 = type into the **Bob chat** (agentic sidebar). 🖥️ = type into a **terminal you open** (**Terminal → New Terminal**). 📝 = edit a **file in the editor**. Never paste shell commands into the chat. See [Where Do I Type This?](README.md#where-do-i-type-this-chat-vs-terminal-vs-editor).
 
-> **💡 Name your custom Bob task-history-folder.** When starting a new task in Bob, give it a short descriptive title (e.g. `"Lab 2 - Git workflow"`). The title is used when exporting session history to `task-history/` and is required for the AI Regulatory Compliance skill to produce accurate provenance records. Unnamed tasks export as `NN_unnamed_task/`.
+> **💡 Name your Bob task.** Give each new task a short title, for example `"Lab 1 - Context exploration"`. The export hook uses the title as the folder name in `task-history/`, and the AI Regulatory Compliance skill (Lab 6) uses it for its provenance records.
+>
+> The folder starts as `NN_unnamed_task/`. It gets the task title only when a second step of the task appears in the sidebar. If it keeps the generic name, rename the folder yourself. The GIF shows a task with two steps:
 
-> Only if a second step appears in the sidebar will the task-history folder be renamed; otherwise, it will remain unnamed.
-> When this happens, you can simply rename the folder as needed.
-> See the GIF below as an example of how it works with two steps in the sidebar:
-
-
-![](/images/03-bob-task-history.gif)
+![Bob sidebar with a named task of two steps, and the matching folder in task-history/](/images/03-bob-task-history.gif)
 
 ---
 
@@ -69,10 +66,10 @@ Before Bob changes files or runs commands, you decide what it may do on its own.
 1. 💬 **In the Bob sidebar** (no typing needed): 
 
 Open the permissions menu:
-![](/images/01-bob-permissions.png)
+![Bob chat sidebar with the permissions menu opened above the chat input](/images/01-bob-permissions.png)
 
 Hover over the **Auto-Approve toolbar** above the chat input and look at the available actions and their risk levels:
-![](/images/02-bob-permissions.png)
+![Auto-Approve toolbar listing the actions Read, Edit, Execute, MCP, Skill and their risk levels](/images/02-bob-permissions.png)
 
    | Action | What Bob may do without asking | Risk |
    | :--- | :--- | :--- |
@@ -117,7 +114,7 @@ Hover over the **Auto-Approve toolbar** above the chat input and look at the ava
    ```markdown
    Where is `StatsTracker` defined, and what methods are implemented in it?
    ```
-3. **Verification:** Notice that Bob gives you exact file references [`calculator.js`](../workshop-apps/lab-1-calculator/src/utils/calculator.js) with clickable links and line numbers. The expected answer is: `StatsTracker` is defined in `calculator.js` at line 26, with the methods `constructor`, `record`, `getCount` and `getStats`.
+3. **Verification:** Bob answers with a clickable file and line reference to `workshop-apps/lab-1-calculator/src/utils/calculator.js` and lists the methods of `StatsTracker`. Open the file and check that the line number and the method names match. Bob generates the code fresh, so names and line numbers differ between runs. In a recorded run, `StatsTracker` started at line 26 with the methods `constructor`, `record`, `getCount` and `getStats`.
 
    > **ℹ️ Expected variation:** Bob may first report that the symbol lookup (`FindSymbol`) found nothing, and then find `StatsTracker` with a text search. In a recorded run the answer was: *"StatsTracker is defined in calculator.js, starting at line 26. The symbol lookup found nothing, so I located it with a text search instead."* This is a correct result. The symbol index can be empty for a file Bob created a moment ago.
 
@@ -141,7 +138,7 @@ An **AST Indexer**:
 
 ```mermaid
 flowchart TD
-    code["Source Code (e.g. calculator.js)"] -->|"Parser (e.g. Tree-sitter)"| ast["Abstract Syntax Tree (AST)<br/>• ClassDeclaration: StatsTracker<br/>&nbsp;&nbsp;&nbsp;&nbsp;↳ constructor()<br/>&nbsp;&nbsp;&nbsp;&nbsp;↳ recordOperation()<br/>• FunctionDeclaration: add(a, b)"]
+    code["Source Code (e.g. calculator.js)"] -->|"Parser (e.g. Tree-sitter)"| ast["Abstract Syntax Tree (AST)<br/>• ClassDeclaration: StatsTracker<br/>&nbsp;&nbsp;&nbsp;&nbsp;↳ constructor()<br/>&nbsp;&nbsp;&nbsp;&nbsp;↳ record()<br/>• FunctionDeclaration: add(a, b)"]
     ast -->|"AST Indexer"| index[("Symbol Index & Graph Database")]
     index -->|"Precise Queries (FindSymbol, GetSymbolsOverview)"| bob["IBM Bob AI Agent<br/>(Reads symbols without dumping whole files)"]
 ```
@@ -157,7 +154,7 @@ flowchart TD
    ```markdown
    Which files reference `StatsTracker`?
    ```
-3. **Verification:** Bob identifies [`app.js`](../workshop-apps/lab-1-calculator/src/app.js) and [`calculator.js`](../workshop-apps/lab-1-calculator/src/utils/calculator.js) and explains their relationship. Bob may use a text search for this too.
+3. **Verification:** Bob identifies `src/app.js` and `src/utils/calculator.js` in `workshop-apps/lab-1-calculator/` and explains their relationship. Bob may use a text search for this too.
 
 > **➡️ Before Lab 2:** your Lab 1 files are still uncommitted. Do **not** ask Bob to "commit the changes". Lab 2 (Step 2.0b) shows how to commit them with explicit paths.
 

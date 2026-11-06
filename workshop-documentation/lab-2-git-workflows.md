@@ -11,14 +11,11 @@
 
 > **🧭 Where do I type?** 💬 = **Bob chat** (agentic sidebar). 🖥️ = **your own terminal** (**Terminal → New Terminal**, repository root). 🌐 = **browser**. Never paste shell commands into the Bob chat and never paste chat prompts into the terminal. See [Where Do I Type This?](README.md#where-do-i-type-this-chat-vs-terminal-vs-editor).
 
-> **💡 Name your custom Bob task-history-folder.** When starting a new task in Bob, give it a short descriptive title (e.g. `"Lab 2 - Git workflow"`). The title is used when exporting session history to `task-history/` and is required for the AI Regulatory Compliance skill to produce accurate provenance records. Unnamed tasks export as `NN_unnamed_task/`.
+> **💡 Name your Bob task.** Give each new task a short title, for example `"Lab 2 - Git workflow"`. The export hook uses the title as the folder name in `task-history/`, and the AI Regulatory Compliance skill (Lab 6) uses it for its provenance records.
+>
+> The folder starts as `NN_unnamed_task/`. It gets the task title only when a second step of the task appears in the sidebar. If it keeps the generic name, rename the folder yourself. The GIF shows a task with two steps:
 
-> Only if a second step appears in the sidebar will the task-history folder be renamed; otherwise, it will remain unnamed.
-> When this happens, you can simply rename the folder as needed.
-> See the GIF below as an example of how it works with two steps in the sidebar:
-
-
-![](/images/03-bob-task-history.gif)
+![Bob sidebar with a named task of two steps, and the matching folder in task-history/](/images/03-bob-task-history.gif)
 
 ---
 
@@ -94,7 +91,7 @@ flowchart TB
 
 4. **Handling tokens safely:**
    - Never paste a GitHub token into the Bob chat, into a Markdown file, or into a file that is committed.
-   - If you use the **GitHub MCP server**, the token belongs only in your local [`.bob/mcp.json`](../.bob/mcp.json). Never commit a token in this file. To hide it from Bob, add it to [`.bobignore`](../.bobignore) (see Lab 4).
+   - If you use the **GitHub MCP server**, the token belongs only in your local `.bob/mcp.json` (created in Lab 4). Never commit a token in this file. To hide it from Bob, add it to [`.bobignore`](../.bobignore) (see Lab 4).
    - A GitHub MCP error `Authentication Failed: Bad credentials` means the token is missing, expired or has no `repo` scope. Create a new token with `repo` scope and update it in `.bob/mcp.json`, or use `gh` instead.
 
 5. Record your choice. You need at least **one** of these three ways to open a PR in Step 2.6:
@@ -138,8 +135,8 @@ Do this **before** you create the feature branch. Uncommitted Lab 1 files would 
 #### 🛠️ Attendee task: keep `.bob/mcp.json` out of Git (do this yourself, it is not part of the default configuration)
 Your MCP configuration can hold tokens and local paths. In a previous run, Bob committed and pushed `.bob/mcp.json` when asked "Commit it and push it". The template deliberately leaves `# .bob/mcp.json` commented out in [`.gitignore`](../.gitignore), so you decide for your own repository.
 
-1. 📝 **Editor:** open [`.gitignore`](../.gitignore) and remove the `#` in front of `.bob/mcp.json`, so the line reads `.bob/mcp.json`. *Alternative without touching the repository: add the line `.bob/mcp.json` to `.git/info/exclude` (You don't see in the Bob environment, but in the .git folder on your computer). That file is local and never committed.*
-![](/images/04-bob-git-exclude.png)
+1. 📝 **Editor:** open [`.gitignore`](../.gitignore) and remove the `#` in front of `.bob/mcp.json`, so the line reads `.bob/mcp.json`. *Alternative without touching the repository: add the line `.bob/mcp.json` to `.git/info/exclude`. The Bob file explorer does not show the `.git` folder, so open the file from your terminal or file manager. That file is local and never committed.*
+![The file .git/info/exclude opened in an editor, with the line .bob/mcp.json added](/images/04-bob-git-exclude.png)
 2. 🖥️ **Terminal:** verify:
    ```bash
    git check-ignore -v .bob/mcp.json

@@ -11,14 +11,11 @@
 
 > **🧭 Where do I type?** 💬 = **Bob chat** (agentic sidebar). 🖥️ = **your own terminal** (**Terminal → New Terminal**, repository root). 📝 = **file in the editor**. Never paste shell commands into the Bob chat. See [Where Do I Type This?](README.md#where-do-i-type-this-chat-vs-terminal-vs-editor).
 
-> **💡 Name your custom Bob task-history-folder.** When starting a new task in Bob, give it a short descriptive title (e.g. `"Lab 4 - SQLite MCP"`). The title is used when exporting session history to `task-history/`. Unnamed tasks export as `NN_unnamed_task/`.
+> **💡 Name your Bob task.** Give each new task a short title, for example `"Lab 4 - SQLite MCP"`. The export hook uses the title as the folder name in `task-history/`, and the AI Regulatory Compliance skill (Lab 6) uses it for its provenance records.
+>
+> The folder starts as `NN_unnamed_task/`. It gets the task title only when a second step of the task appears in the sidebar. If it keeps the generic name, rename the folder yourself. The GIF shows a task with two steps:
 
-> Only if a second step appears in the sidebar will the task-history folder be renamed; otherwise, it will remain unnamed.
-> When this happens, you can simply rename the folder as needed.
-> See the GIF below as an example of how it works with two steps in the sidebar:
-
-
-![](/images/03-bob-task-history.gif)
+![Bob sidebar with a named task of two steps, and the matching folder in task-history/](/images/03-bob-task-history.gif)
 
 ---
 
@@ -66,7 +63,7 @@ flowchart LR
    echo "$(pwd)/workshop-apps/lab-4-mcp/workshop.db"
    ```
    Copy the printed path. Use an absolute path, because the working directory of the MCP server process is not guaranteed to be your repository.
-3. 📝 **Editor:** open [`.bob/mcp.json`](../.bob/mcp.json) in your editor and add the server entry below. The template does not ship this file: if it does not exist yet, create it. If it exists, keep any servers already present. Bob can create this file itself, for example with a `bob-marketplace` entry (a local URL and a token header). Add `workshop-db` **next to** such an entry; do not replace it. The file can hold tokens and local paths, so never commit a token in it. You can also add `.bob/mcp.json` to [`.bobignore`](../.bobignore) if you want to prevent Bob from reading or editing it. Example, replace the path with the one from step 2:
+3. 📝 **Editor:** open `.bob/mcp.json` in your editor and add the server entry below. The template does not ship this file: if it does not exist yet, create it. If it exists, keep any servers already present. Bob can create this file itself, for example with a `bob-marketplace` entry (a local URL and a token header). Add `workshop-db` **next to** such an entry; do not replace it. The file can hold tokens and local paths, so never commit a token in it. You can also add `.bob/mcp.json` to [`.bobignore`](../.bobignore) if you want to prevent Bob from reading or editing it. Example, replace the path with the one from step 2:
    ```json
    {
      "mcpServers": {
@@ -83,11 +80,11 @@ flowchart LR
    ```
    > **🛠️ Attendee task (not part of the default configuration): keep `.bob/mcp.json` out of Git.** The template leaves `# .bob/mcp.json` commented out in [`.gitignore`](../.gitignore) on purpose. If you did not do it in [Lab 2, Step 2.0b](lab-2-git-workflows.md), do it now: remove the `#` in `.gitignore` (or add `.bob/mcp.json` to `.git/info/exclude`) and check it with `git check-ignore -v .bob/mcp.json`. A prompt such as "Commit it and push it" would otherwise push the file, including its local paths and headers, to your repository.
 
-4. 💬 **Bob sidebar (no typing):** verify that the server is connected. Go to stettings and select MCP on the left side. 
+4. 💬 **Bob sidebar (no typing):** verify that the server is connected. Open the Bob **Settings** and select **MCP** on the left side:
 
-![](/images/05-bob-settings.png)
+![Bob settings with the MCP entry selected in the left navigation](/images/05-bob-settings.png)
 
-This open the MCP view in Bob and check that `workshop-db` is listed as running with the tools `list_tables`, `create_table`, `write_query`, `read_query`, `describe_table`, `append_insight`. If it shows an error, 🖥️ **in your terminal** run the same command to see the message:
+In the MCP view, check that `workshop-db` is listed as running with the tools `list_tables`, `create_table`, `write_query`, `read_query`, `describe_table`, `append_insight`. If it shows an error, 🖥️ **in your terminal** run the same command to see the message:
    ```bash
    uvx --with "mcp<2" mcp-server-sqlite --db-path /ABSOLUTE/PATH/TO/REPO/workshop-apps/lab-4-mcp/workshop.db
    ```
@@ -112,15 +109,16 @@ This open the MCP view in Bob and check that `workshop-db` is listed as running 
    ```bash
    ls -la workshop-apps/lab-4-mcp/
    ```
-   Result:
-   ```bash
-   -rw-r--r--@ 1 dsley  staff   0 Nov  6 08:56 workshop.db
+   Example result (owner, size and date differ on your machine). The size must be greater than `0`; a 0-byte file means no table was written:
+   ```text
+   -rw-r--r--  1 <user>  staff  8192 Nov  6 08:56 workshop.db
    ```
 
    * Run a SELECT statement:
    ```bash
    sqlite3 workshop-apps/lab-4-mcp/workshop.db "SELECT * FROM attendees;"
    ```
+   *Expected: the 3 sample attendees, one row per line.*
    
    The file `workshop.db` lives in `workshop-apps/lab-4-mcp/`, not in the repository root. It is ignored by Git (`*.db`).
 
@@ -178,7 +176,7 @@ These resources are optional and are not needed to complete the lab. Use them to
 
 | Resource | Type | Use it for |
 | :--- | :--- | :--- |
-| [Video from the workshop author](https://youtu.be/ZluRM0RNuCA) | Video | Another walkthrough to follow after this lab. |
+| [Importing Open Source BMAD Skills into IBM Bob 2.0](https://youtu.be/ZluRM0RNuCA) | Video (workshop author) | How to add open-source skills to Bob, as a next step after MCP. |
 | [Using MCP in Bob](https://bob.ibm.com/docs/ide/configuration/mcp/mcp-in-bob) | Documentation | Configuration options of `.bob/mcp.json`. |
 | [Understanding MCP Architecture](https://bob.ibm.com/docs/ide/configuration/mcp/understanding-mcp) | Documentation | Clients, servers, tools and transports. |
 | Future **Bob Bazaar** | Tool in Bob | [See the information on LinkedIn](https://www.linkedin.com/posts/aazraq_some-exciting-ibm-bob-demos-at-ibm-techxchange-ugcPost-7521510512862351360-YQ96/) |

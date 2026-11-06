@@ -226,8 +226,10 @@ async function exportTask() {
   let rawTitle = '';
   let createdAt = Date.now();
   let updatedAt = Date.now();
-  let taskEnv = { id: activeSessionId, workspace: workspaceRoot, language: 'en', modeId: 'agent' };
+  let taskEnv = { id: activeSessionId, workspace: workspaceRoot, language: null, modeId: null };
   let taskCosts = { totalCost: 0, tokensIn: 0, tokensOut: 0, cacheWrites: 0, cacheReads: 0 };
+  // Values recorded by Bob; null when the source does not provide them (never invented)
+  let taskMeta = { parentId: null, taskType: null, status: null, version: null, gitSha: null, gitBranch: null, approvalConfig: null };
   let exportMessages = [];
   let uiMessages = [];
   let apiConversationHistory = [];
@@ -241,6 +243,22 @@ async function exportTask() {
     rawTitle = t.title || t.first_message || '';
     createdAt = t.created_at || Date.now();
     updatedAt = t.updated_at || Date.now();
+
+    let approvalConfig = null;
+    try {
+      if (t.approval_config) approvalConfig = typeof t.approval_config === 'string' ? JSON.parse(t.approval_config) : t.approval_config;
+    } catch (e) {
+      approvalConfig = t.approval_config;
+    }
+    taskMeta = {
+      parentId: t.parent_id ?? null,
+      taskType: t.task_type ?? null,
+      status: t.status ?? null,
+      version: t.version ?? null,
+      gitSha: t.git_sha ?? null,
+      gitBranch: t.git_branch ?? null,
+      approvalConfig
+    };
 
     try {
       if (t.env) taskEnv = typeof t.env === 'string' ? JSON.parse(t.env) : t.env;
@@ -397,14 +415,15 @@ async function exportTask() {
         task: {
           id: activeSessionId,
           workspace: `file:${workspaceRoot}`,
-          parentId: null,
-          taskType: 'normal',
+          parentId: taskMeta.parentId,
+          taskType: taskMeta.taskType,
           title: rawTitle.split('\n')[0].trim() || taskSlug,
-          status: 'completed',
+          status: taskMeta.status,
           firstMessage: rawTitle,
-          version: null,
-          gitSha: null,
-          gitBranch: null,
+          version: taskMeta.version,
+          gitSha: taskMeta.gitSha,
+          gitBranch: taskMeta.gitBranch,
+          approvalConfig: taskMeta.approvalConfig,
           env: taskEnv,
           costs: taskCosts,
           createdAt: createdAt,

@@ -35,7 +35,9 @@ This repository is your workspace for the workshop. It contains the lab guides, 
    git config --global user.email "you@example.com"
    ```
 4. **Python 3** (`python3` on the `PATH`). The task-history hook uses it to read Bob's task database.
-5. *(Optional)* **GitHub CLI (`gh`)** for creating pull requests in Lab 2.
+5. **`uv`** (provides `uvx`) to start the SQLite MCP server in Lab 4. macOS: `brew install uv`.
+6. **`sqlite3`** command-line tool, to check the Lab 4 database yourself. It ships with macOS and most Linux distributions. On Windows, install it from [sqlite.org](https://www.sqlite.org/download.html).
+7. *(Recommended)* **GitHub CLI (`gh`)** for creating pull requests in Lab 2.
 
 ---
 
@@ -64,7 +66,7 @@ This repository is your workspace for the workshop. It contains the lab guides, 
 | [Lab 3](workshop-documentation/lab-3-resilient-microservice.md) | Building a Resilient Microservice | 45 min |
 | [Lab 4](workshop-documentation/lab-4-mcp-integration.md) | Extending Bob with MCP Servers | 45 min |
 | [Lab 5](workshop-documentation/lab-5-bob-plus-and-modes.md) | Bob+ Extension, Building Blocks & Custom Modes | 20 min |
-| [Lab 6 (Bonus)](workshop-documentation/lab-6-future-steps-enterprise-integrations.md) | Future Steps: Bob CLI, Premium Packages & Enterprise Integrations | optional, 30 min |
+| [Lab 6 (Bonus)](workshop-documentation/lab-6-future-steps-enterprise-integrations.md) | Future Steps: Bob CLI, Premium Packages & Enterprise Integrations | optional, 40 min |
 
 ---
 
@@ -77,7 +79,7 @@ custom-ibm-bob-intro-workshop-template/
 │   │   └── export-task-history.mjs   # Exports task history (see below)
 │   ├── skills/
 │   │   └── ai-regulatory-compliance/ # Example custom skill
-│   ├── mcp.json                # MCP servers. You create it in Lab 4
+│   ├── mcp.json                # MCP servers. Not in the template: you create it in Lab 4
 │   └── settings.json           # Workspace settings and hook definitions
 ├── workshop-documentation/     # Lab guides (Labs 1–6) and lab index
 ├── workshop-apps/              # Your lab code, one folder per lab

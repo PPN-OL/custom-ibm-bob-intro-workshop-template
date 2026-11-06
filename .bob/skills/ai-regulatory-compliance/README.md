@@ -16,7 +16,7 @@
 When activated, this skill guides Bob through a structured 6-step process that:
 
 1. Verifies a `task-history/` folder of exported AI session files exists
-2. Extracts structural metadata (session count, dates, file sizes) — **without reading any JSON content**
+2. Extracts structural metadata (session count, dates, file sizes) and selected fields of the session exports (title, approval settings, costs, tool calls) — **never quoting conversation text**
 3. Interviews the consultant for project and client facts
 4. Walks through a regulatory checklist covering **EU AI Act** and **GDPR** articles
 5. Generates a self-contained **HTML provenance artifact** in `.bob/artifacts/`
@@ -30,7 +30,7 @@ When activated, this skill guides Bob through a structured 6-step process that:
 
 | Article | Official Title | Enforcement Date | Status |
 |---|---|---|---|
-| **Art. 50** | Transparency Obligations for Providers and Deployers of Certain AI Systems | 2 Aug 2026 — all AI tiers | 🔴 **Already in force** |
+| **Art. 50** | Transparency Obligations for Providers and Deployers of Certain AI Systems | 2 Aug 2026 — the AI systems named in Art. 50, regardless of risk class | 🔴 **Already in force** |
 | **Art. 13** | Transparency and Provision of Information to Deployers | 2 Dec 2027 (Annex III) · 2 Aug 2028 (Annex I) | 🟡 Future obligation |
 | **Art. 14** | Human Oversight | 2 Dec 2027 (Annex III) · 2 Aug 2028 (Annex I) | 🟡 Future obligation |
 | **Art. 16** | Obligations of Providers of High-Risk AI Systems | 2 Dec 2027 (Annex III) · 2 Aug 2028 (Annex I) | 🟡 Future obligation |
@@ -42,6 +42,9 @@ When activated, this skill guides Bob through a structured 6-step process that:
 > is the correct approach. Retroactive documentation of a completed project is far harder
 > than maintaining the audit trail during development. The `task-history/` folder is exactly
 > the kind of evidence Art. 13 will require.
+
+The dates for Art. 13, 14 and 16 follow Regulation (EU) 2026/1744 (Digital Omnibus on AI, in force
+since 27 July 2026), which postponed the high-risk obligations. Check the consolidated text on EUR-Lex.
 
 Official text: <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32024R1689>
 
@@ -66,7 +69,7 @@ Official text: <https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R
 ```
 .bob/skills/ai-regulatory-compliance/
 ├── SKILL.md          ← procedural instructions Bob follows (this is the skill)
-├── README.md         ← this file
+└── README.md         ← this file
 ```
 
 ---
@@ -96,8 +99,10 @@ Before running the skill, the following must be in place:
 
 The skill **does not** require:
 - Running tests or build tools
-- Reading source code
-- Opening any JSON file
+- Modifying source code
+
+It **does** read the session exports in `task-history/` (selected fields only) and
+project files such as `README.md`, `AGENTS.md` and `package.json`, read-only.
 
 ---
 
@@ -186,7 +191,7 @@ The document always contains these sections in order:
 
 | Constraint | Reason |
 |---|---|
-| Never read JSON content from `task-history/` | Structural metadata only — content may be confidential |
+| Never quote conversation text from `task-history/` | Only selected fields are extracted and summarised — content may be confidential |
 | Never execute build tools, tests, or linters | Skill is code-tool-free; safe for non-developer consultants |
 | Never hardcode dates | All timestamps resolved dynamically at runtime |
 | Never fabricate values | Unverified fields shown as `[consultant to confirm]` in amber |
@@ -274,14 +279,14 @@ The skill reads them in two passes:
 
 | Field extracted | Maps to checklist item |
 |---|---|
-| Task title / first `user` message | Art. 13 — development record, intended purpose |
-| `model` field | Art. 13 — AI tool and model transparency |
-| Bob modes in session headers | Art. 13 — tool provenance |
+| `tasks[0].task.title` / first `user` message | Art. 13 — development record, intended purpose |
+| `tasks[0].task.env` (mode, model if recorded) | Art. 13 — AI tool and model transparency |
+| `tasks[0].task.env.modeId` and mode names in messages | Art. 13 — tool provenance |
 | Filenames from `write_file` / `apply_diff` calls | Art. 13 — system description |
-| Human follow-up messages after tool calls | Art. 14 — human oversight evidence |
-| `execute_command` calls with `pytest` / `ruff` | Art. 16 — quality assurance evidence |
+| `tasks[0].task.approvalConfig` and human follow-up messages after tool calls | Art. 14 — human oversight evidence |
+| `execute_command` calls with test or lint commands (`npm test`, `node --test`, `pytest`, `ruff`) | Art. 16 — quality assurance evidence |
 | Privacy-related terms in messages | GDPR Art. 5 / 25 — data handling evidence |
-| `usage` / `cost` field | Metrics table — total AI spend |
+| `tasks[0].task.costs` | Metrics table — total AI spend and tokens |
 
 > ⚠️ **Confidentiality:** Only the specific fields above are extracted.
 > Conversation text is never quoted verbatim — findings are summarised as

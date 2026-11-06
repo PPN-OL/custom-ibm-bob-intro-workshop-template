@@ -32,7 +32,7 @@ task-history/
 
 | File | Description |
 | :--- | :--- |
-| `bob-task-<id>-<date>.json` | Structured export payload including session duration, token counts, cost breakdown, environment mode, and all messages. |
+| `bob-task-<id>-<date>.json` | Structured export payload: `version`, `exportedAt`, `workspace` and a `tasks[0]` entry with `task` (id, title, status, created/updated timestamps, git SHA and branch, approval settings, `env`, `costs` with token counts) and all `messages`. Fields that Bob does not record are `null`. |
 | `ui_messages.json` | Complete stream of UI interaction messages and chat events. |
 | `api_conversation_history.json` | Exact conversation exchange (roles: `user`, `assistant`, tool calls) sent to the LLM backend. |
 
@@ -40,10 +40,10 @@ task-history/
 
 ## ⚙️ Automatic Export via Lifecycle Hook
 
-Task sessions can be exported automatically by the lifecycle hook [`.bob/hooks/export-task-history.mjs`](../.bob/hooks/export-task-history.mjs:1). The hook must be enabled first (see [Lifecycle hook: `export-task-history`](../README.md#lifecycle-hook-export-task-history)).
+Task sessions are exported automatically by the lifecycle hook [`.bob/hooks/export-task-history.mjs`](../.bob/hooks/export-task-history.mjs). The template enables it by default (see [Lifecycle hook: `export-task-history`](../README.md#lifecycle-hook-export-task-history) for how to turn it off).
 
 * **Trigger:** The Bob `Stop` event, i.e. at the end of every task turn. Later turns of the same task update the same folder.
-* **Configuration:** Defined in [`.bob/settings.json`](../.bob/settings.json:1). Hooks only run in a trusted workspace.
+* **Configuration:** Defined in [`.bob/settings.json`](../.bob/settings.json). Hooks only run in a trusted workspace.
 * **Folder name:** Taken from the task title, or from your first prompt if there is no title (max. 50 characters, lowercase, `_` instead of spaces).
 * **Data source:** Bob's task database `~/.bob/db/bob.db`, read with `python3`. Older Bob versions without that database fall back to the IDE's `globalStorage` folder.
 * **Manual Execution:** Run the hook from the repository root. Optionally pass a task ID as the first argument:
@@ -59,7 +59,7 @@ Task sessions can be exported automatically by the lifecycle hook [`.bob/hooks/e
 
 ## ⚖️ AI Regulatory Compliance Integration
 
-Exported sessions in this folder provide the primary evidence base for the [**AI Regulatory Compliance Skill**](../.bob/skills/ai-regulatory-compliance/SKILL.md:1) preinstalled in [`.bob/skills/ai-regulatory-compliance/`](../.bob/skills/ai-regulatory-compliance/SKILL.md:1).
+Exported sessions in this folder provide the primary evidence base for the [**AI Regulatory Compliance Skill**](../.bob/skills/ai-regulatory-compliance/SKILL.md) preinstalled in [`.bob/skills/ai-regulatory-compliance/`](../.bob/skills/ai-regulatory-compliance/SKILL.md).
 
 The skill analyzes the task history records to generate **AI Regulatory Compliance Provenance Documents** satisfying:
 * **EU AI Act (Regulation (EU) 2024/1689):** Articles 13 (Transparency), 14 (Human Oversight), 16 (Obligations of Providers), and 50 (Transparency for Providers/Deployers).

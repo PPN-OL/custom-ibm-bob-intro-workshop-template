@@ -66,6 +66,8 @@ List all skills in .bob/skills/ and all modes defined in .bob/custom_modes.yaml.
 ### Step 5.3: Specialized Mode Switching
 Bob features persona-driven modes with custom toolsets and system prompts:
 
+> **Mode not in the list?** The mode selector shows only modes that are installed. If **Spec-Driven Development** is missing, install it with Bob+ (Step 5.2) or import the template modes first (Step 5.4), then come back here.
+
 1. 💬 **In the Bob chat** (or with the mode selector next to the chat input), switch to **Spec-Driven Development** mode:
    ```markdown
    Switch to "Spec-Driven Development" mode.
@@ -97,12 +99,18 @@ curl -o .bob/custom_modes.yaml https://raw.githubusercontent.com/thomassuedbroec
 ```
 
 #### Available Modes in the Template:
-* **🧭 Spec-Driven Development (`sdd`):** Requirements clarification, OpenAPI/spec authoring, and SDLC traceability.
-* **🏛️ Architecture Review (`arch-review`):** Comprehensive 7-area architecture evaluations and trade-off analysis.
+The template defines 11 modes (checked against its `custom_modes.yaml`; the file can change):
+* **🧭 Spec-Driven Development (`sdd`):** Requirements management, specification creation and prompt engineering across the SDLC.
+* **🏛️ Architecture Review (`arch-review`):** Comprehensive architecture review that uses the specialized review skills.
 * **🔒 Security & Threat Modeling (`security-review`):** STRIDE threat modeling, OWASP Top 10, and security assessments.
 * **📈 Scalability & Performance (`scalability-review`):** Bottleneck analysis, caching strategies, and capacity planning.
+* **🎨 Architecture Patterns (`patterns-review`):** Design patterns, anti-patterns and API design.
+* **🔧 Maintainability & Technical Debt (`maintainability-review`):** Code complexity, technical debt and refactoring.
+* **📚 Documentation Review (`documentation-review`):** ADRs, diagrams, API docs and license notices.
 * **☁️ 12-Factor Compliance (`twelve-factor-review`):** Cloud-native readiness and 12-factor audit.
-* **📊 Draw.io (`drawio`):** Visual architecture diagram generation and updates.
+* **🎯 Business Alignment (`business-alignment-review`):** Business goals, quality attributes and stakeholder needs.
+* **🔍 Configuration Gap Detector (`config-gap-detector`):** Finds tasks that no existing mode or skill covers.
+* **📋 GitHub Issue Generator (`github-issue-generator`):** Turns findings and specs into GitHub issues.
 
 Once imported, switch into any of the modes using the mode selector dropdown in Bob or 💬 **in the Bob chat** via prompt:
 ```markdown
@@ -188,4 +196,5 @@ See [Using MCP in Bob](https://bob.ibm.com/docs/ide/configuration/mcp/mcp-in-bob
 [x] Lab 3: Node.js Express microservice with sliding-window rate limiting
 [x] Lab 4: Local SQLite MCP server and authenticated remote MCP servers
 [x] Lab 5: Bob+ extension, building blocks, custom modes, and remote MCP reference
+[ ] Lab 6 (optional): Bob Shell, enterprise integrations, and the compliance provenance document
 ```

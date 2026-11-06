@@ -6,22 +6,9 @@ Welcome to the **IBM Bob 3-Hour Hands-On Workshop**. This repository serves as b
 
 ---
 
-## 💡 IBM Bob Trial Period & Access
+## 💡 Trial Access & Costs
 
-> **🎉 Free Trial Available:**
-> A **trial period is available for IBM Bob** allowing attendees to explore the Bob IDE, agentic workflows, custom modes, and the Bob Shell CLI before committing to an enterprise tier.
-> - Check your organization's access portal or visit [IBM Bob Documentation & Access](https://bob.ibm.com) to register or activate your trial account.
-> - Ensure your trial seat is assigned and active prior to beginning the hands-on labs.
-
----
-
-## ⚠️ Workshop Execution Costs & Resource Usage Notice
-
-> **💳 Cost & Usage Advisory:**
-> - Executing the prompts and agentic tasks in this workshop consumes AI foundation model tokens and API quota associated with your IBM Bob account.
-> - When using trial seats or promotional credits, these activities draw down from your allotted trial allowance.
-> - If you explore optional enterprise cloud integrations (such as IBM Cloud Code Engine deployments or watsonx Orchestrate endpoints in Labs 5 & 6), standard cloud infrastructure and API invocation charges may apply based on your cloud account's pricing plan.
-> - Keep prompt iterations focused and follow the recommended lab steps to manage resource consumption effectively.
+A free IBM Bob trial is available, and running the labs uses your Bob token allowance. Optional cloud steps in Labs 5 and 6 can cause cloud charges. Details are in the sections "IBM Bob Trial Period & Access" and "Workshop Execution Costs & Resource Usage Notice" of the [repository README](../README.md).
 
 ---
 
@@ -103,12 +90,13 @@ Before starting the workshop, ensure you have:
    V8: 14.8.178.14-electron.0
    OS: Darwin arm64 27.0.0
    ```
-2. **Workspace Trust Enabled:** When opening this repository in IBM Bob, accept the prompt to **Trust Workspace & Authors** (or run `Workspaces: Manage Workspace Trust` from the Command Palette). Workspace Trust is required for lifecycle hooks (such as automatic task-history export in [`.bob/settings.json`](../.bob/settings.json:1)) and Bob extension features to run.
+2. **Workspace Trust Enabled:** When opening this repository in IBM Bob, accept the prompt to **Trust Workspace & Authors** (or run `Workspaces: Manage Workspace Trust` from the Command Palette). Workspace Trust is required for lifecycle hooks (such as automatic task-history export in [`.bob/settings.json`](../.bob/settings.json)) and Bob extension features to run.
 3. **Node.js** 18 or newer (LTS recommended) and `npm` installed locally.
 4. **Python 3** (`python3` on the `PATH`). The task-history hook uses it to read Bob's task database.
 5. **Git** configured with user email and name.
 6. **GitHub CLI (`gh`)**, authenticated with `gh auth login` (recommended for Lab 2 PR creation; Lab 2 Step 2.0 describes fallbacks).
 7. **`uv`** (provides `uvx`) for the Lab 4 SQLite MCP server. macOS: `brew install uv`.
+8. **`sqlite3`** command-line tool to check the Lab 4 database yourself (preinstalled on macOS and most Linux distributions; on Windows see [sqlite.org](https://www.sqlite.org/download.html)).
 
 
 ---
@@ -142,7 +130,7 @@ custom-ibm-bob-intro-workshop-template/
 │   │   └── ai-regulatory-compliance/   # AI Regulatory Compliance Provenance skill
 │   │       ├── README.md
 │   │       └── SKILL.md
-│   ├── mcp.json                        # MCP server definitions (you create it in Lab 4)
+│   ├── mcp.json                        # MCP server definitions (not in the template; you create it in Lab 4)
 │   └── settings.json                   # Bob workspace settings and hook definitions
 ├── task-history/                       # Task session histories & audit trail documentation
 │   └── README.md
