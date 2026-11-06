@@ -40,6 +40,8 @@ Lifecycle hooks (such as automatic task-history export) and extensions in IBM Bo
 1. Verify that the current workspace is trusted. If the **Workspace Trust** banner or prompt appears, select **"Trust Workspace & Authors"**.
 2. You can also verify or change trust status at any time via the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P` -> `Workspaces: Manage Workspace Trust`).
 
+![](/images/06-bob-trust.png)
+
 ---
 
 ### Step 1.1: Verify Workspace Configuration & Rules

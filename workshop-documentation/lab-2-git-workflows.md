@@ -132,6 +132,8 @@ Do this **before** you create the feature branch. Uncommitted Lab 1 files would 
    ```
    *Expected: one commit with only files under `workshop-apps/lab-1-calculator/`, and `## main...origin/main` without `ahead`.*
 
+![](/images/07-bob-git-commit.png)
+
 #### 🛠️ Attendee task: keep `.bob/mcp.json` out of Git (do this yourself, it is not part of the default configuration)
 Your MCP configuration can hold tokens and local paths. In a previous run, Bob committed and pushed `.bob/mcp.json` when asked "Commit it and push it". The template deliberately leaves `# .bob/mcp.json` commented out in [`.gitignore`](../.gitignore), so you decide for your own repository.
 
