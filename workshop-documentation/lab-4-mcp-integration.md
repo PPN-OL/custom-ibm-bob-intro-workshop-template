@@ -170,7 +170,7 @@ These resources are optional and are not needed to complete the lab. Use them to
 | [Video from the workshop author](https://youtu.be/ZluRM0RNuCA) | Video | Another walkthrough to follow after this lab. |
 | [Using MCP in Bob](https://bob.ibm.com/docs/ide/configuration/mcp/mcp-in-bob) | Documentation | Configuration options of `.bob/mcp.json`. |
 | [Understanding MCP Architecture](https://bob.ibm.com/docs/ide/configuration/mcp/understanding-mcp) | Documentation | Clients, servers, tools and transports. |
-| Bob Marketplace (MCP view in Bob) | Tool in Bob | Browse installable skills, modes and MCP servers. |
+| Future **Bob Bazaar** | Tool in Bob | [See the information on LinkedIn](https://www.linkedin.com/posts/aazraq_some-exciting-ibm-bob-demos-at-ibm-techxchange-ugcPost-7521510512862351360-YQ96/) |
 
 ---
 
