@@ -53,7 +53,7 @@ flowchart LR
    /resume
    ```
 
-![](/images/08-bob-cli-commands.pngimages/)
+![](/images/08-bob-cli-commands.png)
 
 4. **IDE Companion Bridge:** When run inside IBM Bob's integrated terminal, Bob Shell offers to connect to the IDE. After you accept, it sees your recent files and cursor position, and shows suggested changes in the IDE diff viewer (see the Bob Shell documentation, section "Integrating with Bob IDE").
 
