@@ -50,8 +50,11 @@ flowchart LR
    ```
 3. **Session Checkpointing & Restore:** Bob Shell tracks automatic checkpoints before executing file modifications. 🖥️ **Inside a running Bob Shell session** (not in the IDE chat and not in a normal shell), type the slash command:
    ```bash
-   /restore
+   /resume
    ```
+
+![](/images/08-bob-cli-commands.pngimages/)
+
 4. **IDE Companion Bridge:** When run inside IBM Bob's integrated terminal, Bob Shell offers to connect to the IDE. After you accept, it sees your recent files and cursor position, and shows suggested changes in the IDE diff viewer (see the Bob Shell documentation, section "Integrating with Bob IDE").
 
 ---
