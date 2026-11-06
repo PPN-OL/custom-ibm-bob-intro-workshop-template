@@ -107,10 +107,21 @@ This open the MCP view in Bob and check that `workshop-db` is listed as running 
    Use the `workshop-db` MCP server to query the `attendees` table and display the results in a formatted markdown table.
    ```
 3. **Verification:** In the chat, Bob shows MCP tool calls (`create_table`, `write_query`, `read_query`) on `workshop-db`. Then 🖥️ **in your terminal**, confirm that the data is saved in the app folder:
+
+   * Find database:
    ```bash
    ls -la workshop-apps/lab-4-mcp/
+   ```
+   Result:
+   ```bash
+   -rw-r--r--@ 1 dsley  staff   0 Nov  6 08:56 workshop.db
+   ```
+
+   * Run a SELECT statement:
+   ```bash
    sqlite3 workshop-apps/lab-4-mcp/workshop.db "SELECT * FROM attendees;"
    ```
+   
    The file `workshop.db` lives in `workshop-apps/lab-4-mcp/`, not in the repository root. It is ignored by Git (`*.db`).
 
 ---
