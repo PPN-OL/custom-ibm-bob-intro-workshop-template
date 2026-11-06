@@ -83,7 +83,11 @@ flowchart LR
    ```
    > **🛠️ Attendee task (not part of the default configuration): keep `.bob/mcp.json` out of Git.** The template leaves `# .bob/mcp.json` commented out in [`.gitignore`](../.gitignore) on purpose. If you did not do it in [Lab 2, Step 2.0b](lab-2-git-workflows.md), do it now: remove the `#` in `.gitignore` (or add `.bob/mcp.json` to `.git/info/exclude`) and check it with `git check-ignore -v .bob/mcp.json`. A prompt such as "Commit it and push it" would otherwise push the file, including its local paths and headers, to your repository.
 
-4. 💬 **Bob sidebar (no typing):** verify that the server is connected. Open the MCP view in Bob and check that `workshop-db` is listed as running with the tools `list_tables`, `create_table`, `write_query`, `read_query`, `describe_table`, `append_insight`. If it shows an error, 🖥️ **in your terminal** run the same command to see the message:
+4. 💬 **Bob sidebar (no typing):** verify that the server is connected. Go to stettings and select MCP on the left side. 
+
+![](/images/05-bob-settings.png)
+
+This open the MCP view in Bob and check that `workshop-db` is listed as running with the tools `list_tables`, `create_table`, `write_query`, `read_query`, `describe_table`, `append_insight`. If it shows an error, 🖥️ **in your terminal** run the same command to see the message:
    ```bash
    uvx --with "mcp<2" mcp-server-sqlite --db-path /ABSOLUTE/PATH/TO/REPO/workshop-apps/lab-4-mcp/workshop.db
    ```
