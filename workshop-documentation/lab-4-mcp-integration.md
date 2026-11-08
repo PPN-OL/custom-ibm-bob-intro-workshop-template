@@ -15,7 +15,7 @@
 >
 > The folder starts as `NN_unnamed_task/`. It gets the task title only when a second step of the task appears in the sidebar. If it keeps the generic name, rename the folder yourself. The GIF shows a task with two steps:
 
-![Bob sidebar with a named task of two steps, and the matching folder in task-history/](/images/03-bob-task-history.gif)
+![Bob sidebar with a named task of two steps, and the matching folder in task-history/](../images/03-bob-task-history.gif)
 
 ---
 
@@ -82,7 +82,7 @@ flowchart LR
 
 4. 💬 **Bob sidebar (no typing):** verify that the server is connected. Open the Bob **Settings** and select **MCP** on the left side:
 
-![Bob settings with the MCP entry selected in the left navigation](/images/05-bob-settings.png)
+![Bob settings with the MCP entry selected in the left navigation](../images/05-bob-settings.png)
 
 In the MCP view, check that `workshop-db` is listed as running with the tools `list_tables`, `create_table`, `write_query`, `read_query`, `describe_table`, `append_insight`. If it shows an error, 🖥️ **in your terminal** run the same command to see the message:
    ```bash
@@ -114,11 +114,11 @@ In the MCP view, check that `workshop-db` is listed as running with the tools `l
    -rw-r--r--  1 <user>  staff  8192 Nov  6 08:56 workshop.db
    ```
 
-   * Run a SELECT statement:
+   * Optional, attendee-only cross-check: run a SELECT statement **yourself**. This is an independent check outside Bob. Bob itself still uses only the MCP tools (see [`AGENTS.md`](../AGENTS.md)). It needs the `sqlite3` command, which is preinstalled on macOS but may be missing on Windows and some Linux systems:
    ```bash
    sqlite3 workshop-apps/lab-4-mcp/workshop.db "SELECT * FROM attendees;"
    ```
-   *Expected: the 3 sample attendees, one row per line.*
+   *Expected: the 3 sample attendees, one row per line.* If `sqlite3` is not available, skip this check: the file size above and Bob's `read_query` result are enough.
    
    The file `workshop.db` lives in `workshop-apps/lab-4-mcp/`, not in the repository root. It is ignored by Git (`*.db`).
 

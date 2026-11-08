@@ -18,7 +18,7 @@
 >
 > The folder starts as `NN_unnamed_task/`. It gets the task title only when a second step of the task appears in the sidebar. If it keeps the generic name, rename the folder yourself. The GIF shows a task with two steps:
 
-![Bob sidebar with a named task of two steps, and the matching folder in task-history/](/images/03-bob-task-history.gif)
+![Bob sidebar with a named task of two steps, and the matching folder in task-history/](../images/03-bob-task-history.gif)
 
 ---
 
@@ -40,7 +40,7 @@ Lifecycle hooks (such as automatic task-history export) and extensions in IBM Bo
 1. Verify that the current workspace is trusted. If the **Workspace Trust** banner or prompt appears, select **"Trust Workspace & Authors"**.
 2. You can also verify or change trust status at any time via the Command Palette (`Cmd+Shift+P` / `Ctrl+Shift+P` -> `Workspaces: Manage Workspace Trust`).
 
-![](/images/06-bob-trust.png)
+![Workspace Trust page in Restricted Mode, with the Trust button highlighted under "In a Trusted Folder"](../images/06-bob-trust.png)
 
 ---
 
@@ -68,10 +68,10 @@ Before Bob changes files or runs commands, you decide what it may do on its own.
 1. 💬 **In the Bob sidebar** (no typing needed): 
 
 Open the permissions menu:
-![Bob chat sidebar with the permissions menu opened above the chat input](/images/01-bob-permissions.png)
+![Bob chat sidebar with the permissions menu opened above the chat input](../images/01-bob-permissions.png)
 
 Hover over the **Auto-Approve toolbar** above the chat input and look at the available actions and their risk levels:
-![Auto-Approve toolbar listing the actions Read, Edit, Execute, MCP, Skill and their risk levels](/images/02-bob-permissions.png)
+![Auto-Approve toolbar listing the actions Read, Edit, Execute, MCP, Skill and their risk levels](../images/02-bob-permissions.png)
 
    | Action | What Bob may do without asking | Risk |
    | :--- | :--- | :--- |

@@ -87,16 +87,20 @@ Bob features persona-driven modes with custom toolsets and system prompts:
 You can import a rich collection of predefined custom modes (Architecture Review, Threat Modeling, Spec-Driven Development, 12-Factor, etc.) from the [`review_and_sdd_custom_ibm_bob_configuration_template`](https://github.com/thomassuedbroecker/review_and_sdd_custom_ibm_bob_configuration_template.git) repository.
 
 #### Option A: Ask Bob to fetch and configure the modes — 💬 **Bob chat**
+> **⚠️ Do not overwrite existing modes.** If you installed modes with Bob+ in Step 5.2, they are already in `.bob/custom_modes.yaml`. Replacing that file would remove them. Both options below therefore **merge** the template modes into the existing file.
+
 Prompt Bob directly in the chat:
 ```markdown
-Fetch the custom modes from https://raw.githubusercontent.com/thomassuedbroecker/review_and_sdd_custom_ibm_bob_configuration_template/main/.bob/custom_modes.yaml and save them to .bob/custom_modes.yaml
+Fetch the custom modes from https://raw.githubusercontent.com/thomassuedbroecker/review_and_sdd_custom_ibm_bob_configuration_template/main/.bob/custom_modes.yaml and merge them into .bob/custom_modes.yaml. Do not overwrite the file: keep all existing modes, add only modes whose `slug` is not present yet, and list any slug that exists in both files instead of replacing it.
 ```
 
 #### Option B: Download via CLI — 🖥️ **Terminal** (repository root)
-Run the following curl command **in your own terminal, not in the Bob chat**:
+Run the following curl command **in your own terminal, not in the Bob chat**. It saves the template to a separate file, so nothing is overwritten:
 ```bash
-curl -o .bob/custom_modes.yaml https://raw.githubusercontent.com/thomassuedbroecker/review_and_sdd_custom_ibm_bob_configuration_template/main/.bob/custom_modes.yaml
+curl -o .bob/custom_modes.template.yaml https://raw.githubusercontent.com/thomassuedbroecker/review_and_sdd_custom_ibm_bob_configuration_template/main/.bob/custom_modes.yaml
 ```
+* If `.bob/custom_modes.yaml` **does not exist yet**, rename the download: `mv .bob/custom_modes.template.yaml .bob/custom_modes.yaml`
+* If it **already exists**, 💬 ask Bob to merge: `Merge .bob/custom_modes.template.yaml into .bob/custom_modes.yaml by mode slug, keep existing modes, then delete .bob/custom_modes.template.yaml.`
 
 #### Available Modes in the Template:
 The template defines 11 modes (checked against its `custom_modes.yaml`; the file can change):

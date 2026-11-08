@@ -50,7 +50,7 @@ Every lab produces verifiable, concrete evidence to validate your progress and e
 | **Lab 3** | Express REST microservice, sliding rate limiter & automated tests | `workshop-apps/lab-3-resilient-service/index.js`, `package.json`, `data/sample.json`, `test/api.test.js` | Terminal `curl` returns HTTP 200/429; `npm test` passes cleanly |
 | **Lab 4** | Local SQLite MCP server configuration & populated SQLite database | `.bob/mcp.json`, `workshop-apps/lab-4-mcp/workshop.db` | MCP tools `create_table`, `write_query`, `read_query` return DB results |
 | **Lab 5** | Installed Bob+ extension, custom modes, and architecture review specs | `.bob/skills/`, `.bob/custom_modes.yaml`, mode switch outputs | Bob mode selector lists custom modes; prompt responses reflect mode persona |
-| **Lab 6** | Headless CLI automation script, enterprise architecture integration design and AI regulatory compliance provenance document | Bob Shell CLI terminal session, watsonx/TM1 MCP configuration designs, `.bob/artifacts/<project-slug>-ai-regulatory-compliance.html` | `bob -p` execution, `/restore` checkpoint validation, HTML file opens in a browser |
+| **Lab 6** | Headless CLI automation script, enterprise architecture integration design and AI regulatory compliance provenance document | Bob Shell CLI terminal session, watsonx/TM1 MCP configuration designs, `.bob/artifacts/<project-slug>-ai-regulatory-compliance.html` | `bob -p` execution, `/resume` session resumption, HTML file opens in a browser |
 
 ---
 

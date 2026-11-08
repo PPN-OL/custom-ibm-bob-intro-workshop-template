@@ -18,7 +18,7 @@
 ## 1. Objectives
 
 By the end of this lab, you will:
-- Understand how to leverage **Bob Shell (CLI)** for command-line workflows, CI/CD pipeline automation, and checkpoint recovery.
+- Understand how to leverage **Bob Shell (CLI)** for command-line workflows, CI/CD pipeline automation, and resuming previous sessions.
 - Learn how **Enterprise Premium Packages** extend Bob with specialized capabilities for specific platforms and modernization workflows.
 - Explore integration patterns between Bob and **IBM watsonx Orchestrate** digital workers.
 - Understand how Bob interfaces with **IBM Planning Analytics (TM1)** via REST APIs, MDX queries, and TM1py automation.
@@ -35,7 +35,7 @@ Bob Shell (started with the `bob` command) brings IBM Bob’s reasoning and cont
 ```mermaid
 flowchart LR
     cli["Bob Shell CLI<br/>(Terminal / CI/CD)"] -->|"Headless Scripting & Automation"| tasks["Code Review & Linting<br/>Pipeline Validation<br/>Automated Refactoring"]
-    cli -->|"Checkpoint Engine"| restore["/restore<br/>(Snapshot Recovery)"]
+    cli -->|"Task History"| resume["/resume<br/>(Resume a previous conversation)"]
     cli <-->|"IDE Bridge"| ide["IBM Bob IDE<br/>(Shared Workspace Context)"]
 ```
 
@@ -48,12 +48,13 @@ flowchart LR
    ```bash
    bob -p "Audit all JavaScript files for unhandled Promise rejections and return a Markdown summary"
    ```
-3. **Session Checkpointing & Restore:** Bob Shell tracks automatic checkpoints before executing file modifications. 🖥️ **Inside a running Bob Shell session** (not in the IDE chat and not in a normal shell), type the slash command:
+3. **Resume a Previous Session:** Bob Shell saves your tasks to its task history. 🖥️ **Inside a running Bob Shell session** (not in the IDE chat and not in a normal shell), type the slash command below to browse and continue a previous conversation (alias: `/history`):
    ```bash
    /resume
    ```
+   Type `/help` to list all available commands:
 
-![](/images/08-bob-cli-commands.png)
+![Bob Shell "Available Commands" list, including /resume - Browse and resume previous conversations](../images/08-bob-cli-commands.png)
 
 4. **IDE Companion Bridge:** When run inside IBM Bob's integrated terminal, Bob Shell offers to connect to the IDE. After you accept, it sees your recent files and cursor position, and shows suggested changes in the IDE diff viewer (see the Bob Shell documentation, section "Integrating with Bob IDE").
 
@@ -188,7 +189,7 @@ git status --short -uall | grep task-history
 
 | Solution / Capability | Official Resource Link | Description |
 | :--- | :--- | :--- |
-| **IBM Bob Shell (CLI)** | [Bob Shell Documentation](https://bob.ibm.com/docs/shell) | Official guide to installation, headless execution, tools, and `/restore` checkpoints. |
+| **IBM Bob Shell (CLI)** | [Bob Shell Documentation](https://bob.ibm.com/docs/shell) | Official guide to installation, headless execution, tools, and slash commands such as `/resume`. |
 | **IBM Bob Premium Packages** | [Premium Packages Overview](https://bob.ibm.com/docs/ide/premium-packages/pkg-index) | Overview of the available premium packages and how to update them. |
 | **IBM Bob Enterprise Administration** | [User & Role Management](https://bob.ibm.com/docs/ide/enterprise/getting-started/users) | Managing organization users, roles, seats and premium package assignment. |
 | **IBM watsonx Orchestrate** | [watsonx Orchestrate Docs](https://www.ibm.com/docs/en/watsonx/watson-orchestrate) | Product documentation for IBM watsonx Orchestrate. |

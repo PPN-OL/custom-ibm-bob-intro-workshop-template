@@ -15,7 +15,7 @@
 >
 > The folder starts as `NN_unnamed_task/`. It gets the task title only when a second step of the task appears in the sidebar. If it keeps the generic name, rename the folder yourself. The GIF shows a task with two steps:
 
-![Bob sidebar with a named task of two steps, and the matching folder in task-history/](/images/03-bob-task-history.gif)
+![Bob sidebar with a named task of two steps, and the matching folder in task-history/](../images/03-bob-task-history.gif)
 
 ---
 
@@ -132,13 +132,13 @@ Do this **before** you create the feature branch. Uncommitted Lab 1 files would 
    ```
    *Expected: one commit with only files under `workshop-apps/lab-1-calculator/`, and `## main...origin/main` without `ahead`.*
 
-![](/images/07-bob-git-commit.png)
+![Source Control view with the commit "feat(lab-1): add calculator app" on main under Outgoing Changes](../images/07-bob-git-commit.png)
 
 #### 🛠️ Attendee task: keep `.bob/mcp.json` out of Git (do this yourself, it is not part of the default configuration)
 Your MCP configuration can hold tokens and local paths. In a previous run, Bob committed and pushed `.bob/mcp.json` when asked "Commit it and push it". The template deliberately leaves `# .bob/mcp.json` commented out in [`.gitignore`](../.gitignore), so you decide for your own repository.
 
 1. 📝 **Editor:** open [`.gitignore`](../.gitignore) and remove the `#` in front of `.bob/mcp.json`, so the line reads `.bob/mcp.json`. *Alternative without touching the repository: add the line `.bob/mcp.json` to `.git/info/exclude`. The Bob file explorer does not show the `.git` folder, so open the file from your terminal or file manager. That file is local and never committed.*
-![The file .git/info/exclude opened in an editor, with the line .bob/mcp.json added](/images/04-bob-git-exclude.png)
+![The file .git/info/exclude opened in an editor, with the line .bob/mcp.json added](../images/04-bob-git-exclude.png)
 2. 🖥️ **Terminal:** verify:
    ```bash
    git check-ignore -v .bob/mcp.json

@@ -15,11 +15,11 @@
 >
 > The folder starts as `NN_unnamed_task/`. It gets the task title only when a second step of the task appears in the sidebar. If it keeps the generic name, rename the folder yourself. The GIF shows a task with two steps:
 
-![Bob sidebar with a named task of two steps, and the matching folder in task-history/](/images/03-bob-task-history.gif)
+![Bob sidebar with a named task of two steps, and the matching folder in task-history/](../images/03-bob-task-history.gif)
 
 > **This lab uses two terminals.** **Terminal 1** runs the server (`node index.js`) and stays busy. **Terminal 2** runs `curl` and `npm test`. Open a second one with the **+** icon in the terminal panel.
 >
-> **⚠️ Do not run inline tests.** Bob may attempt to verify the server with an inline `node -e "..."` command. This fails with HTTP 500: in `node -e`, `__dirname` is `"."`, so `data/sample.json` is resolved against the current working directory instead of the app folder, and the file is not found. Always start the server with `node index.js` in Terminal 1 and test with `curl` from Terminal 2 as shown in Step 3.3.
+> **⚠️ Do not run inline tests.** Bob may attempt to verify the server with an inline `node -e "..."` command. This can fail, typically with HTTP 500 (the exact error depends on the generated error handling): in `node -e`, `__dirname` is `"."`, so `data/sample.json` is resolved against the current working directory instead of the app folder, and the file is not found. Always start the server with `node index.js` in Terminal 1 and test with `curl` from Terminal 2 as shown in Step 3.3.
 
 ---
 
@@ -112,7 +112,7 @@ cd workshop-apps/lab-3-resilient-service
    curl -s http://localhost:3000/api/data
    ```
 
-3. 🖥️ **Terminal 2:** test the Rate Limiter by firing 6 rapid requests:
+3. 🖥️ **Terminal 2:** test the Rate Limiter by firing 6 rapid requests. **Wait at least 10 seconds after step 2 first**: the request in step 2 already counts toward the limit, so without the wait you get four `200`s and two `429`s.
    ```bash
    for i in {1..6}; do curl -s -o /dev/null -w "%{http_code}\n" http://localhost:3000/api/data; done
    ```
